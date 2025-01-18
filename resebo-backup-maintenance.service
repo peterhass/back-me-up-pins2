@@ -14,5 +14,4 @@ Restart=on-failure
 RestartSec=60s
 
 EnvironmentFile=/etc/resebo-backup
-WorkingDirectory=${BACKUP_ROOT}
-ExecStart=/usr/local/bin/resebo-backup clean srv ${BACKUP_PATHS}
+ExecStart=/bin/bash -c 'cd "${BACKUP_ROOT}" && /usr/local/bin/resebo-backup clean srv ${BACKUP_PATHS}'
