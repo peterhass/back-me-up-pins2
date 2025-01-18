@@ -2,7 +2,7 @@
 set -e
 
 usage() {
-  echo "Usage: $0 <command> [NAME] [PATH]"
+  echo "Usage: $0 <command> [NAME] [PATH...]"
   echo "Commands: archive | clean"
   echo "Expects BORG_REPO env variable to be set"
   exit 1
@@ -10,9 +10,10 @@ usage() {
 
 COMMAND="$1"
 NAME="$2"
-SOURCE_PATH="$3"
+shift 2
+SOURCE_PATH=("$@")
 
-if [ -z "$SOURCE_PATH" ]; then
+if [ "${#SOURCE_PATH[@]}" -lt 1 ]; then
   usage
 fi
 
@@ -26,16 +27,14 @@ fi
 
 case "$COMMAND" in
   archive)
-    SNAP="system-$(date +%Y-%m-%d)"
-    
-    /usr/local/bin/with-system-snapshot "$SNAP" -- /usr/bin/borg create \
+    /usr/bin/borg create \
       --verbose \
       --stat \
       --progress \
       --compression zlib \
       --lock-wait 86400 \
       "${BORG_REPO}"::"$NAME"-{now} \
-      "/.snapshots/$SNAP/$SOURCE_PATH"
+      "${SOURCE_PATH[@]}"
     ;;
   clean)
     echo "Pruning ..."

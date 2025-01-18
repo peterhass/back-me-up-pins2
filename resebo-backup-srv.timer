@@ -1,9 +1,9 @@
 [Unit]
-Description=pins2 Backup: System Timer
+Description=resebo Backup: Srv Timer
 
 [Timer]
 OnCalendar=Mon *-*-* 05:00:00
-Unit=pins2-backup-system.service
+Unit=resebo-backup-srv.service
 WakeSystem=true
 Persistent=false
 

@@ -1,6 +1,5 @@
-
 [Unit]
-Description=resebo Backup: Maintenance
+Description=resebo Backup Srv
 Requires=network-online.target
 After=network-online.target
 
@@ -8,11 +7,11 @@ StartLimitBurst=5
 StartLimitIntervalSec=300
 
 [Service]
-Type=oneshot
+Type=simple
 
 Restart=on-failure
 RestartSec=60s
 
 EnvironmentFile=/etc/resebo-backup
 WorkingDirectory=${BACKUP_ROOT}
-ExecStart=/usr/local/bin/resebo-backup clean srv ${BACKUP_PATHS}
+ExecStart=/usr/local/bin/resebo-backup archive srv ${BACKUP_PATHS}
