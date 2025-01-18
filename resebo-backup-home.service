@@ -1,5 +1,5 @@
 [Unit]
-Description=pins2 Backup: Home
+Description=resebo Backup: Home
 Requires=network-online.target
 After=network-online.target
 
@@ -12,9 +12,9 @@ Type=simple
 Restart=on-failure
 RestartSec=60s
 
-EnvironmentFile=/etc/pins2-backup
+EnvironmentFile=/etc/resebo-backup
 ExecStart=/usr/local/bin/blocking-systemd-inhibit \
-  --who="pins2 Backup: Home" \
-  --why="pins2 home backup syncing" \
+  --who="resebo Backup: Home" \
+  --why="resebo home backup syncing" \
   --what=sleep \
-  -- /usr/local/bin/pins2-backup archive home /home/
+  -- /usr/local/bin/resebo-backup archive home /home/

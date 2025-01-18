@@ -1,19 +1,19 @@
 install: 
-	cp -n ./pins2-backup.env /etc/pins2-backup || true
-	chmod 640 /etc/pins2-backup
+	cp -n ./resebo-backup.env /etc/resebo-backup || true
+	chmod 640 /etc/resebo-backup
 
 	cp ./with-system-snapshot /usr/local/bin/with-system-snapshot
 	cp ./blocking-systemd-inhibit /usr/local/bin/blocking-systemd-inhibit
-	cp ./pins2-backup /usr/local/bin/pins2-backup
+	cp ./resebo-backup /usr/local/bin/resebo-backup
 
-	cp ./pins2-backup-maintenance.service /etc/systemd/system/
-	cp ./pins2-backup-maintenance.timer /etc/systemd/system/
-	cp ./pins2-backup-system.service /etc/systemd/system/
-	cp ./pins2-backup-system.timer /etc/systemd/system/
-	cp ./pins2-backup-home.service /etc/systemd/system/
-	cp ./pins2-backup-home.timer /etc/systemd/system/
+	cp ./resebo-backup-maintenance.service /etc/systemd/system/
+	cp ./resebo-backup-maintenance.timer /etc/systemd/system/
+	cp ./resebo-backup-system.service /etc/systemd/system/
+	cp ./resebo-backup-system.timer /etc/systemd/system/
+	cp ./resebo-backup-home.service /etc/systemd/system/
+	cp ./resebo-backup-home.timer /etc/systemd/system/
 	systemctl daemon-reload
 enable:
-	systemctl enable --now pins2-backup-maintenance.timer
-	systemctl enable --now pins2-backup-system.timer
-	systemctl enable --now pins2-backup-home.timer
+	systemctl enable --now resebo-backup-maintenance.timer
+	systemctl enable --now resebo-backup-system.timer
+	systemctl enable --now resebo-backup-home.timer

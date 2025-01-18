@@ -1,6 +1,6 @@
 
 [Unit]
-Description=pins2 Backup: Maintenance
+Description=resebo Backup: Maintenance
 Requires=network-online.target
 After=network-online.target
 
@@ -13,14 +13,14 @@ Type=oneshot
 Restart=on-failure
 RestartSec=60s
 
-EnvironmentFile=/etc/pins2-backup
+EnvironmentFile=/etc/resebo-backup
 ExecStart=/usr/local/bin/blocking-systemd-inhibit \
-  --who="pins2 Backup" \
-  --why="pins2 backup cleaning" \
+  --who="resebo Backup" \
+  --why="resebo backup cleaning" \
   --what=sleep \
-  -- /usr/local/bin/pins2-backup clean system /
+  -- /usr/local/bin/resebo-backup clean system /
 ExecStart=/usr/local/bin/blocking-systemd-inhibit \
-  --who="pins2 Backup" \
-  --why="pins2 backup cleaning" \
+  --who="resebo Backup" \
+  --why="resebo backup cleaning" \
   --what=sleep \
-  -- /usr/local/bin/pins2-backup clean home /home/
+  -- /usr/local/bin/resebo-backup clean home /home/
