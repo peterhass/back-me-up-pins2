@@ -3,7 +3,7 @@
 Description=resebo Backup: System Timer
 
 [Timer]
-OnCalendar=*-*-* 12:00
+OnCalendar=Fri *-*-* 01:00:00
 Unit=resebo-backup-maintenance.service
 WakeSystem=true
 Persistent=false
